@@ -1,0 +1,523 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Baruwa:: A web 2.0 MailScanner frontend | Source Installation</title>
+	<link rel="icon" href="_static/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="_static/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="_static/reset.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="_static/text.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="_static/960.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<!--<link rel="stylesheet" href="_static/pygments.css" type="text/css" media="screen" title="no title" charset="utf-8" />-->
+	<link rel="stylesheet" href="_static/baruwa.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<script src="_static/jquery.js" type="text/javascript"></script>
+	<script src="_static/hosted.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-261565-4']);
+	_gaq.push(['_trackPageview']);
+	</script>
+</head>
+<body>
+	<div id="wrap" class="container_16">
+		<div id="header" class="grid_16">
+			<div id="log" class="grid_8"><img src="_static/logo.png" alt="Baruwa" /></div>
+		</div>
+		<div id="navigation" class="grid_16"><ul>
+	<li><a href="http://www.baruwa.org/">Home</a></li>
+	<li><a href="http://www.baruwa.org/about/">About</a>
+	<ul>
+		<li><a href="http://www.baruwa.org/about/features.html">Features</a></li>
+		<li><a href="http://www.baruwa.org/about/screenshots.html">Screenshots</a></li>
+		<li><a href="http://www.baruwa.org/about/requirements.html">Requirements</a></li>
+	</ul>
+	</li>
+	<li><a href="http://www.baruwa.org/blog/">Blog</a></li>
+	<li><a href="http://www.baruwa.org/documentation/">Documentation</a>
+		<ul>
+			<li><a href="http://www.baruwa.org/documentation/">Read online</a></li>
+			<li><a href="http://www.baruwa.org/documentation/#downloads">Download</a></li>
+			<li><a href="https://github.com/akissa/baruwa/wiki">Wiki</a></li>
+			<li><a href="http://www.baruwa.org/documentation/#mirrors">Mirrors</a></li>
+		</ul>
+	</li>
+	<li><a href="http://www.baruwa.org/community/">Community</a></li>
+	<li><a href="http://www.baruwa.org/download/">Download</a></li>
+	<li><a href="http://www.baruwa.org/development/">Development</a></li>
+	<li><a href="http://www.baruwa.org/support/">Support</a>
+		<ul>
+			<li><a href="http://www.baruwa.org/support/">Free support</a></li>
+			<li><a href="http://www.baruwa.org/support/">Commercial support</a></li>
+		</ul>
+	</li>
+</ul>
+		</div>
+		<div class="clear">&nbsp;</div>
+		<div id="main" class="grid_16 featured">
+			<div class="grid_15"><h1>Baruwa Documentation: 1.1.1</h1></div>
+		</div>
+		<div id="holder" class="grid_16">
+			<div id="sidebar" class="grid_3">
+<h3>Site Search</h3>
+<form action="http://www.google.com/cse" id="cse-search-box">
+<div>
+   	<input type="hidden" name="cx" value="partner-pub-3001556624430247:g7zpfj4e9qx" />
+    <input type="hidden" name="ie" value="ISO-8859-1" />
+    <input type="text" name="q" size="15" /><input type="submit" name="sa" value="Go" />
+</div>
+</form>
+
+  <h3><a href="index.html">Docs Home</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Source Installation</a><ul>
+<li><a class="reference internal" href="#install-baruwa">Install Baruwa</a><ul>
+<li><a class="reference internal" href="#install-via-the-python-package-index-pypi">Install via the Python Package Index (PyPI)</a></li>
+<li><a class="reference internal" href="#downloading-and-installing-from-source">Downloading and installing from source</a></li>
+<li><a class="reference internal" href="#using-the-development-version">Using the development version</a></li>
+<li><a class="reference internal" href="#install-the-python-geoip-module">Install the Python GeoIP module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configure-rabbitmq">Configure RabbitMQ</a></li>
+<li><a class="reference internal" href="#configure-baruwa">Configure Baruwa</a><ul>
+<li><a class="reference internal" href="#configure-the-web-server">Configure the Web server</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configure-mailscanner">Configure MailScanner</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#distribution-os-installation">Distribution / OS installation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="requirements.html"
+                        title="previous chapter">Requirements</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install_centos.html"
+                        title="next chapter">Baruwa on RHEL/SL/Centos</a></p><h3>Download docs</h3>
+<ul>
+	<li><a href="http://topdog-software.com/oss/baruwa/1.1.1/docs/baruwa.pdf">PDF</a></li>
+	<li><a href="http://topdog-software.com/oss/baruwa/1.1.1/docs/baruwa.epub">EPUB</a></li>
+</ul><h3>Support Baruwa</h3>
+<p>
+	Your generous donations help fund future development.
+</p>
+<p>
+<a href='http://www.pledgie.com/campaigns/12056'>
+	<img alt='make a donation at www.pledgie.com !' src="_static/paypal-donate.png" border='0' />
+	<img alt='make a donation at www.pledgie.com !' src="_static/visa.png" border='0' />
+	<img alt='make a donation at www.pledgie.com !' src="_static/mastercard.png" border='0' />
+</a>
+</p>
+<h3>Ads</h3>
+<div>
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-3001556624430247";
+	/* Docs */
+	google_ad_slot = "9418887640";
+	google_ad_width = 120;
+	google_ad_height = 240;
+	//-->
+	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+<div>&nbsp;</div>
+			</div>
+			<div id="content" class="grid_12">
+				
+  <div class="section" id="source-installation">
+<span id="install"></span><h1>Source Installation</h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Packages are available for Debian/Ubuntu, RHEL/SL/Centos and
+Fedora if you are using one of those OS&#8217;s rather install
+using the packages.</p>
+</div>
+<p>If you do not want to install to your global python directories
+or are just testing it is advised that you use a <a class="reference external" href="http://www.virtualenv.org/en/latest/">virtualenv</a>
+python install.</p>
+<p>Virtualenv allows you to run multiple python installs and is
+easily managed as you do not need to be a privileged user to
+install packages.</p>
+<p>For more info on <a class="reference external" href="http://www.virtualenv.org/en/latest/">virtualenv</a> please refer to its documentation.</p>
+<div class="section" id="install-baruwa">
+<h2>Install Baruwa</h2>
+<p>You can install Baruwa either via the Python Package Index (PyPI)
+or from source.</p>
+<div class="section" id="install-via-the-python-package-index-pypi">
+<h3>Install via the Python Package Index (PyPI)</h3>
+<p>To install using <cite>pip</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># pip install baruwa</span>
+</pre></div>
+</div>
+<p>To install using <cite>easy_install</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># easy_install baruwa</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="downloading-and-installing-from-source">
+<h3>Downloading and installing from source</h3>
+<p>Download the latest version of Baruwa from <a class="reference external" href="http://pypi.python.org/pypi/baruwa/">PyPI</a></p>
+<p>You can install it by doing the following,:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># tar xvfz baruwa-&lt;version&gt;.tar.gz</span>
+<span class="c"># cd baruwa-&lt;version&gt;</span>
+<span class="c"># python setup.py install</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-the-development-version">
+<h3>Using the development version</h3>
+<p>You can clone the repository by doing the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># git clone git://github.com/akissa/baruwa.git</span>
+<span class="c"># cd baruwa</span>
+<span class="c"># python setup.py install</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-the-python-geoip-module">
+<h3>Install the Python GeoIP module</h3>
+<p>You need to install this manually as it does not build
+cleanly when installed automatically during Baruwa&#8217;s
+installation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># wget http://geolite.maxmind.com/download/geoip/api/python/GeoIP-Python-1.2.4.tar.gz</span>
+<span class="c"># tar xzvf GeoIP-Python-1.2.4.tar.gz</span>
+<span class="c"># cd GeoIP-Python-1.2.4</span>
+<span class="c"># python setup.py install</span>
+</pre></div>
+</div>
+<p>Link the Baruwa settings file to /etc/baruwa:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># mkdir /etc/baruwa</span>
+<span class="c"># baruwa_path=$(python -c &quot;from distutils.sysconfig import get_python_lib; print get_python_lib()&quot;)</span>
+<span class="c"># ln -s $baruwa_path/baruwa/settings.py /etc/baruwa/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="configure-rabbitmq">
+<h2>Configure RabbitMQ</h2>
+<p>Create a user and virtual host for baruwa:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># rabbitmqctl add_user baruwa your_password</span>
+<span class="c"># rabbitmqctl add_vhost baruwa</span>
+<span class="c"># rabbitmqctl set_permissions -p baruwa baruwa &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</span>
+</pre></div>
+</div>
+<p>Delete the guest user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># rabbitmqctl delete_user guest</span>
+</pre></div>
+</div>
+<p>See the RabbitMQ <a class="reference external" href="http://www.rabbitmq.com/admin-guide.html">Admin Guide</a> for more information.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please ensure that you control access to your RabbitMQ install
+as to prevent an unauthorized clients from accessing your broker.</p>
+</div>
+</div>
+<div class="section" id="configure-baruwa">
+<h2>Configure Baruwa</h2>
+<p><strong>Create the database</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># mysqladmin -u root -p create baruwa</span>
+</pre></div>
+</div>
+<p><strong>Create a Mysql user for baruwa</strong></p>
+<p>Run the command from the mysql prompt:</p>
+<div class="highlight-python"><pre>mysql&gt; GRANT ALL ON baruwa.* TO baruwa@localhost IDENTIFIED BY '&lt;password&gt;';
+mysql&gt; flush privileges;</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You may want to secure your system by creating several users will limited rights
+as opposed to the above where the user has full access to the DB.</p>
+</div>
+<p><strong>Configure the Baruwa settings</strong></p>
+<p>Edit the Baruwa settings.py file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># vi /etc/baruwa/settings.py</span>
+</pre></div>
+</div>
+<p>Set the following options under the default DATABASE option:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">NAME</span> <span class="o">=</span> <span class="s">&#39;baruwa&#39;</span>
+<span class="n">USER</span> <span class="o">=</span> <span class="s">&#39;baruwa&#39;</span>
+<span class="n">PASSWORD</span> <span class="o">=</span> <span class="s">&#39;&lt;password&gt;&#39;</span>
+<span class="n">HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+</pre></div>
+</div>
+<p>Populate the database:</p>
+<div class="highlight-python"><pre># baruwa-admin syncdb --noinput
+# for name in  $(echo "accounts messages lists reports status fixups config"); do
+        baruwa-admin migrate $name;
+  done</pre>
+</div>
+<p>Create the admin user account:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># baruwa-admin createsuperuser</span>
+</pre></div>
+</div>
+<p>Set the rabbitMQ settings:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">CELERY_CONCURRENCY</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">BROKER_HOST</span> <span class="o">=</span> <span class="s">&quot;localhost&quot;</span>
+<span class="n">BROKER_PORT</span> <span class="o">=</span> <span class="mi">5672</span>
+<span class="n">BROKER_USER</span> <span class="o">=</span> <span class="s">&quot;baruwa&quot;</span>
+<span class="n">BROKER_PASSWORD</span> <span class="o">=</span> <span class="s">&quot;your_password&quot;</span>
+<span class="n">BROKER_VHOST</span> <span class="o">=</span> <span class="s">&quot;baruwa&quot;</span>
+</pre></div>
+</div>
+<p>Edit the settings.py file and make configuration changes to suit your site.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># vi /etc/baruwa/settings.py</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure you change the SECRET_KEY, DO NOT USE THE DEFAULT, If you have a cluster the key
+should be the same on all the machines in the cluster.</p>
+</div>
+<p>Link to the dojo toolkit:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># ln -s /path/to/dojo $baruwa_path/baruwa/static/js</span>
+<span class="c"># ln -s /path/to/dojox $baruwa_path/baruwa/static/js</span>
+<span class="c"># ln -s /path/to/dijit $baruwa_path/baruwa/static/js</span>
+</pre></div>
+</div>
+<p><strong>Configure celeryd to run as a daemon</strong></p>
+<p>You need to run celeryd as a daemon in order to process tasks such as
+Bayesian learning and message releases from the quarantine etc etc.</p>
+<p>Download the appropriate init script for your OS from the
+<a class="reference external" href="https://github.com/ask/celery/tree/master/contrib">celery repository</a>, then <a class="reference external" href="http://docs.celeryproject.org/en/v2.2.5/cookbook/daemonizing.html">read</a> the celery documentation
+on how to run celeryd as a daemon on your specific OS. Make
+sure you configure your system using the Django configuration
+examples.</p>
+<p>If you have any difficulties please refer to the Baruwa <a class="reference external" href="http://lists.baruwa.org/">mailing list</a>
+for assistance.</p>
+<p><strong>Configure Email Signature management</strong></p>
+<p>Baruwa now supports the management of email signatures / disclaimers
+from within the web interface. Signatures are configured on a domain
+and user level.</p>
+<p>Both HTML and text signatures are supported, HTML signatures support
+embedding of one graphical image, which can be uploaded via the HTML
+editor interface.</p>
+<p>The backend that handles the signatures needs to be initialized before
+you can begin to manage the signatures via the interface.</p>
+<p>To initialize the backend run:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># baruwa-admin initconfig</span>
+</pre></div>
+</div>
+<p>This will ask you for the hostname of the system you are setting up,
+and then initialize the system for you. The command does attempt to
+guess your hostname, so if its correct just press enter.</p>
+<p>You need to initialize each of your machines if you are running a
+clustered setup.</p>
+<p>If you are installing from source you need to create the directory
+structure to store you signature files:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># install -p /etc/MailScanner/signatures/{users,domains}/{html,text,imgs}</span>
+<span class="c"># chown celeryd.celeryd -R /etc/MailScanner/signatures/{users,domains}</span>
+</pre></div>
+</div>
+<div class="section" id="configure-the-web-server">
+<h3>Configure the Web server</h3>
+<p><strong>Apache/mod_wsgi</strong></p>
+<p>Make sure you have mod_wsgi installed and enabled.</p>
+<p>Use the sample configuration provided (extras/baruwa-mod_wsgi.conf)
+as a template. Copy to your apache configuration directory usually
+/etc/httpd/conf.d on Redhat and clones or /etc/apache2/conf.d/ on
+debian and clones. For others refer to your system docs for the
+location.</p>
+<p>Make sure that your apache is configured for name based virtual
+hosting such that you can run other sites on the same box if you
+wish to.</p>
+<p>Edit baruwa-mod_wsgi.conf and set ServerName to the hostname you
+will use to access baruwa</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you installed using virtualenv, you need to customize and
+use virtual.wsgi instead of baruwa.wsgi in your mod_wsgi
+configuration.</p>
+</div>
+<p>Restart apache for the configuration to take effect.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># /etc/init.d/httpd reload</span>
+</pre></div>
+</div>
+<p><strong>Lighttpd</strong></p>
+<p>Use the generic <a class="reference external" href="http://docs.djangoproject.com/en/1.1/howto/deployment/fastcgi/#lighttpd-setup">Lighttpd</a> django instructions.</p>
+<p><strong>Nginx</strong></p>
+<p>Use the nginx instructions from the <a class="reference external" href="http://wiki.nginx.org/NginxDjangoFastCGI">nginx wiki</a></p>
+<p><strong>Cherokee</strong></p>
+<p>Use the <a class="reference external" href="http://www.cherokee-project.com/doc/cookbook_django.html">cherokee cookbook</a> instructions.</p>
+</div>
+</div>
+<div class="section" id="configure-mailscanner">
+<h2>Configure MailScanner</h2>
+<p>It is assumed that you have a working MailScanner system already installed
+and configured, if you are installing from scratch please refer to their
+documentation on how to install and configure MailScanner.</p>
+<p><strong>Install the Baruwa MailScanner Custom modules</strong></p>
+<p>Copy them to the MailScanner custom functions directory:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># confdir=$(/usr/sbin/Quick.Peek &#39;Custom Functions Dir&#39; /etc/MailScanner/MailScanner.conf)</span>
+<span class="c"># cp extras/{BaruwaSQL.pm, BaruwaLists.pm, BaruwaUserSettings.pm} $confdir/</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Starting with Baruwa version 1.1.0 you no longer have to edit and set the
+DB authentication details in each and every Custom module, you just set them
+up once in the MailScanner configuration file, A sample configuration file is
+provided you simply customize that and drop it into the configuration directory
+and it will override the settings in your MailScanner.conf file.</p>
+</div>
+<p>Edit the provided MailScanner config file extras/baruwa-mailscanner.conf,
+you need to make sure the following options are correct:</p>
+<div class="highlight-python"><pre>Quarantine User = exim #(Or what ever your `Run As User` is set to)
+DB DSN = DBI:mysql:database=baruwa;host=spam01;port=3306 #set to valid DSN
+DB Username = baruwa # your DB username
+DB Password = password # your DB password</pre>
+</div>
+<p>To actually quarantine and later process messages with in Baruwa, set
+<cite>store</cite> as one of your keywords for the <cite>Spam Actions</cite> and
+<cite>High Scoring Spam Actions</cite> MailScanner options.</p>
+<p>The provided MailScanner configuration provides for SQL logging, Whitelists and
+Blacklists and Per user settings. Copy the file into the MailScanner configuration
+directory:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># cp extras/baruwa-mailscanner.conf /etc/MailScanner/conf.d/baruwa.conf</span>
+</pre></div>
+</div>
+<p>In some cases your MailScanner configuration directory is under /opt:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># cp extras/baruwa-mailscanner.conf /opt/etc/MailScanner/conf.d/baruwa.conf</span>
+</pre></div>
+</div>
+<p><strong>Apply configuration changes</strong></p>
+<p>Test your configuration for any errors:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># MailScanner --lint</span>
+</pre></div>
+</div>
+<p>Restart MailScanner:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># /etc/init.d/MailScanner restart</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing</h2>
+<p><strong>Verify that is working</strong></p>
+<p>Check your log files you should see</p>
+<p>Baruwa SQL logger:</p>
+<div class="highlight-python"><pre>Aug  9 18:58:27 localhost MailScanner[8470]: Logging message 1OiVg7-0003zS-9s to Baruwa SQL
+Aug  9 18:58:27 localhost MailScanner[11052]: 1OiVg7-0003zS-9s: Logged to Baruwa SQL</pre>
+</div>
+<p>Baruwa Lists:</p>
+<div class="highlight-python"><pre>Aug 9 18:32:42 localhost MailScanner[27260]: Starting Baruwa whitelists
+Aug 9 18:32:42 localhost MailScanner[27260]: Read 6 whitelist items
+Aug 9 18:32:42 localhost MailScanner[27260]: Ip blocks whitelisted 192.168.1.0/24 192.168.2.0/24
+xxx.xx.xxx.0/26</pre>
+</div>
+<p>Baruwa User settings:</p>
+<div class="highlight-python"><pre>Aug 9 15:00:03 localhost MailScanner[25708]: Baruwa - Populating spam score settings
+Aug 9 15:00:03 localhost MailScanner[25708]: Read 1 spam score settings
+Aug 9 14:59:53 localhost MailScanner[25668]: Baruwa - Populating high spam score settings
+Aug 9 14:59:53 localhost MailScanner[25668]: Read 1 high spam score settings</pre>
+</div>
+<p>Point your browser to <a class="reference external" href="http://hostname_used">http://hostname_used</a> login with admin user and password
+and start working. You can now use the interface to add users, domains and
+process messages, etc etc.</p>
+</div>
+<div class="section" id="distribution-os-installation">
+<h2>Distribution / OS installation</h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="install_centos.html#installcentos"><em>Baruwa on RHEL/SL/Centos</em></a>.</li>
+<li><a class="reference internal" href="install_fedora.html#installfedora"><em>Baruwa on Fedora</em></a>.</li>
+<li><a class="reference internal" href="install_debian.html#installdeb"><em>Baruwa on Ubuntu/Debian</em></a>.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+			</div>
+		</div>
+		<div id="footer" class="grid_16"><div id="sitemap" class="grid_16">
+    <div id="sitelinks" class="grid_3">
+        <h4>About</h4>
+        <ul>
+            <li><a href="http://www.baruwa.org/about/">Introduction</a></li>
+            <li><a href="http://www.baruwa.org/about/features.html">Features</a></li>
+            <li><a href="http://www.baruwa.org/about/screenshots.html">Screenshots</a></li>
+            <li><a href="http://www.baruwa.org/about/requirements.html">Requirements</a></li>
+            <li><a href="http://www.baruwa.org/download/">Downloads</a></li>
+			<li><a href="http://www.pledgie.com/campaigns/12056">Donations</a></li>
+        </ul>
+    </div>
+    <div id="supportlinks" class="grid_4">
+        <h4>Support</h4>
+        <ul>
+            <li><a href="http://www.baruwa.org/community/#mlist">Mailing list</a></li>
+            <li><a href="http://www.baruwa.org/community/#irc">IRC</a></li>
+            <li><a href="https://github.com/akissa/baruwa/issues">Issue tracker</a></li>
+            <li><a href="http://www.baruwa.org/support/">Commercial support</a></li>
+        </ul>
+    </div>
+    <div id="doclins" class="grid_4">
+        <h4>Documentation</h4>
+        <ul>
+            <li><a href="http://www.baruwa.org/documentation/">Read online</a></li>
+            <li><a href="http://www.baruwa.org/documentation/#downloads">Download</a></li>
+            <li><a href="http://www.baruwa.org/community/#wiki">Wiki</a></li>
+            <li><a href="http://www.baruwa.org/documentation/#mirrors">Mirrors</a></li>
+            <li><a href="http://www.baruwa.org/blog/">Blog</a></li>
+        </ul>
+    </div>
+    <div id="search" class="grid_4">
+		<h4>Documentation Quick links</h4>
+		<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#features">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#screenshots">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Source Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_centos.html">Baruwa on RHEL/SL/Centos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_fedora.html">Baruwa on Fedora</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_debian.html">Baruwa on Ubuntu/Debian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">External authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">MTA Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed_setup.html">Clustered setups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_included.html">Other batteries included</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contributing to Baruwa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">Upgrading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migrate from Mailwatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="old.html">Older documentation</a></li>
+</ul>
+
+    </div>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="grid_16" id="copylinks">
+<div id="copy-left" class="grid_8">
+    <span>Follow Baruwa...</span>
+    <a href="http://www.baruwa.org/blog/feed/index.xml"><img src="_static/feed.png" alt="RSS feeds"  title="Baruwa RSS feeds" /></a>
+    <a href="http://identi.ca/baruwa"><img src="_static/identi.png" alt="Identi"  title="Baruwa on Identi" /></a>
+    <a href="http://twitter.com/baruwaproject"><img src="_static/twitter.png" alt="twitter"  title="Baruwa on Twitter" /></a>
+    <a href="http://www.facebook.com/share.php?u=http://www.baruwa.org/install.html&amp;t=Baruwa"><img src="_static/facebook.png" alt="facebool"  title="Baruwa on Facebook" /></a>
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.baruwa.org/install.html"><img src="_static/linkedin.png" alt="linkedin"  title="Baruwa on Linkedin" /></a>
+    <a href="http://www.flickr.com/photos/baruwa"><img src="_static/flickr.png" alt="flickr"  title="Baruwa on Flickr" /></a>
+    <a href="http://delicious.com/save?v=5&amp;url=http://www.baruwa.org/install.html&amp;title=Baruwa"><img src="_static/delicious.png" alt="delicious"  title="Baruwa on delicious" /></a>
+    <a href="http://www.stumbleupon.com/submit?url=http://www.baruwa.org/install.html"><img src="_static/stumble.png" alt="stumbleupon" title="Baruwa on stumbleupon" /></a>
+    <a href="http://reddit.com/submit?url=http://www.baruwa.org/install.html"><img src="_static/reddit.png" alt="reddit" title="Add to reddit" /></a>
+    <a href="http://github.com/akissa/baruwa"><img src="_static/github.png" alt="Github" title="Baruwa on Github" /></a>
+    <a href="http://freshmeat.net/projects/baruwa"><img src="_static/fm.png" alt="Freshmeat" title="Baruwa on Freshmeat" /></a>
+    <a href="http://www.pledgie.com/campaigns/12056"><img src="_static/paypal.png" alt="Donate"  title="Donate to Baruwa" /></a>
+</div>
+<div id="copy-right" class="grid_7">&copy; Copyright 2010, Andrew Colin Kissa.
+</div>
+</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	(function() {
+	var ga = document.createElement('script');
+	ga.src = ('https:' == document.location.protocol ?
+	'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	ga.setAttribute('async', 'true');
+	document.documentElement.firstChild.appendChild(ga);
+	})();
+	</script>
+	<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</body>
+</html>
